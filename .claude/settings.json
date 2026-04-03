@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(node -e \"require\\(''./binance''\\); require\\(''./scanner''\\); require\\(''./telegram''\\); console.log\\(''OK''\\)\")",
+      "Bash(npx vite:*)"
+    ]
+  }
+}
