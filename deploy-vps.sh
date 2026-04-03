@@ -118,9 +118,9 @@ fi
 pm2 save --force
 
 # Configurar pm2 startup (solo si no está ya)
-if ! systemctl is-enabled pm2-"$USER" &>/dev/null 2>&1; then
+if ! systemctl is-enabled "pm2-$USER" &>/dev/null 2>&1; then
   warn "Configurando PM2 para arrancar al inicio del servidor..."
-  pm2 startup | tail -1 | bash || true
+  env PATH="$PATH:$(which node | xargs dirname)" pm2 startup systemd -u "$USER" --hp "$HOME" || true
 fi
 
 # ── Resumen ───────────────────────────────────────────────────────────────────
