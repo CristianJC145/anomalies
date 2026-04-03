@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(node -e \"require\\('dotenv'\\).config\\(\\); const s=require\\('./server'\\); setTimeout\\(\\(\\)=>process.exit\\(0\\),1000\\);\")",
-      "Bash(docker build:*)"
+      "Bash(docker build:*)",
+      "Bash(node -e \"require\\('./server'\\)\")",
+      "Bash(kill %1)"
     ]
   }
 }

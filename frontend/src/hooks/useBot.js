@@ -9,15 +9,16 @@ export function useBot() {
     interval: '5m',
     candlesForAvg: 10,
     volumeMultiplier: 3.0,
+    priceChangeThreshold: 0,
     cooldownMinutes: 15,
     selectedPairs: [],
     excludedPairs: [],
   });
-  const [running, setRunning] = useState(false);
+  const [running, setRunning]     = useState(false);
   const [pairsData, setPairsData] = useState({});
-  const [alerts, setAlerts] = useState([]);
-  const [stats, setStats] = useState({ lastScan: null, totalScans: 0, alertsToday: 0, pairsScanned: 0 });
-  const [allPairs, setAllPairs] = useState([]);
+  const [alerts, setAlerts]       = useState([]);
+  const [stats, setStats]         = useState({ lastScan: null, totalScans: 0, alertsToday: 0, pairsScanned: 0 });
+  const [allPairs, setAllPairs]   = useState([]);
   const [loadingPairs, setLoadingPairs] = useState(false);
 
   const handleMessage = useCallback((msg) => {

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 
-const INTERVALS = ['1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h'];
-const CANDLE_OPTIONS = [5, 10, 15, 20, 30, 50];
+const INTERVALS        = ['1m', '3m', '5m', '15m', '30m', '1h', '2h', '4h'];
+const CANDLE_OPTIONS   = [5, 10, 15, 20, 30, 50];
 const MULTIPLIER_PRESETS = [2, 2.5, 3, 4, 5, 7, 10];
 const COOLDOWN_OPTIONS = [5, 10, 15, 20, 30, 60];
-const CHANGE_PRESETS = [0, 0.5, 1, 2, 3, 5, 10];
+const CHANGE_PRESETS   = [0, 0.5, 1, 2, 3, 5, 10];
 
 export default function BotConfig({ config, onUpdate }) {
   const [tgToken, setTgToken] = useState('');
   const [tgChatId, setTgChatId] = useState('');
   const [tgStatus, setTgStatus] = useState(null);
-  const [testing, setTesting] = useState(false);
+  const [testing, setTesting]   = useState(false);
   const [localMultiplier, setLocalMultiplier] = useState(config.volumeMultiplier);
   const [localChange, setLocalChange]         = useState(config.priceChangeThreshold ?? 0);
 
@@ -230,6 +230,7 @@ export default function BotConfig({ config, onUpdate }) {
           )}
         </div>
       </div>
+
     </div>
   );
 }

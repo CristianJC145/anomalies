@@ -19,7 +19,7 @@ class Scanner {
       interval: '5m',
       candlesForAvg: 10,
       volumeMultiplier: 3.0,
-      priceChangeThreshold: 0,   // % candle change required (0 = disabled)
+      priceChangeThreshold: 0,
       cooldownMinutes: 15,
       selectedPairs: [],
       excludedPairs: [],
@@ -177,9 +177,7 @@ class Scanner {
 
         this.broadcast({ type: 'alert', data: alert });
 
-        if (telegram.isConfigured()) {
-          telegram.sendAlert(alert);
-        }
+        if (telegram.isConfigured()) telegram.sendAlert(alert);
       }
 
       return pairInfo;

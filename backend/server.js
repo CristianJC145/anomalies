@@ -34,12 +34,13 @@ function broadcast(message) {
   });
 }
 
-// ── Scanner + Telegram init ───────────────────────────────────────────────────
+// ── Scanner + Telegram + Trading init ────────────────────────────────────────
 const scanner = new Scanner(broadcast);
 
 if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
   telegram.init(process.env.TELEGRAM_BOT_TOKEN, process.env.TELEGRAM_CHAT_ID);
 }
+
 
 // ── WebSocket handler ─────────────────────────────────────────────────────────
 wss.on('connection', (ws, req) => {
