@@ -68,11 +68,21 @@ app.get('/api/pairs', async (_req, res) => {
 
 app.get('/api/pairs-with-tickers', async (_req, res) => {
   try {
-    const [pairs, tickers, marketCaps] = await Promise.all([
+    // Binance calls are required; CoinGecko is optional (never throws)
+    const [pairsResult, tickersResult] = await Promise.allSettled([
       getAllPerpetualPairs(),
       getAllTickers24h(),
-      getMarketCaps(),
     ]);
+
+    if (pairsResult.status === 'rejected')
+      return res.status(500).json({ success: false, error: 'Binance pairs: ' + pairsResult.reason.message });
+    if (tickersResult.status === 'rejected')
+      return res.status(500).json({ success: false, error: 'Binance tickers: ' + tickersResult.reason.message });
+
+    const pairs      = pairsResult.value;
+    const tickers    = tickersResult.value;
+    const marketCaps = await getMarketCaps(); // never throws
+
     const data = pairs.map(p => {
       const ticker = tickers[p.symbol] || {};
       const mc     = marketCaps[p.baseAsset] || {};
